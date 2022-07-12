@@ -1,0 +1,189 @@
+.body-search {
+    position: absolute;
+    z-index: 1;
+    top: 73px;
+    width: 100%;
+  }
+  .search {
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .body-car-img {
+    position: absolute;
+    top: -24px;
+    right: -28px;
+    width: 420px;
+    height: 229px;
+    z-index: 3;
+  }
+  .search-gd {
+    margin-bottom: 20px;
+    font-family: pmzd;
+    line-height: 50px;
+    font-size: 40px;
+    color: #f5cc4f;
+    background-image: -webkit-linear-gradient(top, #f9edd5, #f5cb4f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .search-sr {
+    width: 640px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 50px;
+  }
+  .search-input {
+    margin-left: 20px;
+    width: 490px;
+    height: 100%;
+    border: none;
+    font-size: 18px;
+    outline: none;
+  }
+  .search-btn {
+    width: 116px;
+    height: 100%;
+    background: #5685fe;
+    border-radius: 0px 8px 8px 0px;
+    border: 1px solid #f0f0f0;
+    font-size: 18px;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  .buy-sell {
+    width: 1200px;
+    height: 301px;
+    background: #ffffff;
+    box-shadow: 0px 2px 20px 0px rgb(170 170 216 / 40%);
+    border-radius: 14px;
+    box-sizing: border-box;
+    padding-top: 50px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .search-line {
+    width: 10px;
+    height: 30px;
+    background: #5685fe;
+  }
+  .title-text {
+    line-height: 32px;
+    font-weight: 600;
+    font-size: 24px;
+    margin-left: 20px;
+  }
+  .buy-search {
+    margin-left: 40px;
+    font-size: 14px;
+    margin-top: 30px;
+  }
+  .search-div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  .div-brand {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+  }
+  .div-brand img {
+    width: 29px;
+    height: 30px;
+    margin-right: 12px;
+  }
+  .div-price {
+    width: 90px;
+    height: 34px;
+    background: #f5f7fe;
+    border-radius: 17px;
+    line-height: 34px;
+    text-align: center;
+    margin-right: 15px;
+  }
+  .sell {
+    width: 586px;
+    height: auto;
+  }
+  .title-text {
+    line-height: 32px;
+    font-weight: 600;
+    font-size: 24px;
+    margin-left: 20px;
+  }
+  .sell-container {
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .container-input {
+    width: 330px;
+    height: 40px;
+    box-sizing: border-box;
+    padding-left: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+  .container-input input {
+    height: 100%;
+    width: 200px;
+    border: none;
+    outline: none;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+  }
+  
+  input[type="number"] {
+      -moz-appearance: textfield;
+  }
+  .container-input button {
+    width: 96px;
+    height: 40px;
+    background: #5685fe;
+    border-radius: 0px 8px 8px 0px;
+    border: 1px solid #f0f0f0;
+    color: #ffffff;
+  }
+  .container-gz {
+    width: 330px;
+    height: 56px;
+    background: #ffffff;
+    box-shadow: 0px 1px 10px 0px rgb(170 170 216 / 40%);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+  }
+  .gz-link {
+    display: flex;
+    align-items: center;
+    width: 164px;
+    justify-content: center;
+  }
+  .gz-link img {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+  }
+  .gz-line {
+    width: 1px;
+    height: 29px;
+    background: #d8e3ff;
+  }
+  .buy-title {
+      display: flex;
+      align-items: center;
+  }
