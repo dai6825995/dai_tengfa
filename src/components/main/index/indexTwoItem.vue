@@ -1,27 +1,63 @@
 <template>
-    <a class="list-item" v-for="item in contentList" :key="item.ind">
-      <div class="list-item-img">
-        <img  width="275"
-          height="208" :src=item.cover />
-        <div class="item-type type-re">限时特惠</div>
+  <a class="list-item" v-for="item in contentList" :key="item.ind">
+    <div class="list-item-img">
+      <img width="275" height="208" :src="item.cover" />
+     
+      <div
+        :class="{
+          'item-type': true,
+          'type-or': item.saleType == 0,
+          'type-bl': item.saleType == 1,
+          'type-re': item.saleType == 2,
+        }"
+      >
+      {{saleName(item.saleType)}}
       </div>
-      <div class="item-info">
-        <div class="item-info-title">{{item.carName}}</div>
-        <div class="item-info-time">2019年01月 / {{item.mileage}}万公里</div>
-        <div class="item-info-price">
-          <span class="price1">{{item.currentPrice}}万</span>
-        </div>
+    </div>
+    <div class="item-info">
+      <div class="item-info-title">{{ item.carName }}</div>
+      <div class="item-info-time">
+        {{ timeStr(item) }} / {{ item.mileage }}万公里
       </div>
-    </a>
+      <div class="item-info-price">
+        <span class="price1">{{ item.currentPrice }}万</span>
+      </div>
+    </div>
+  </a>
 </template>
 
 <script setup>
-import {defineProps} from 'vue'
-defineProps(['contentList'])
+import { computed, defineProps } from "vue";
+defineProps(["contentList"]);
+
+// 时间戳转文字
+const timeStr = (item) => {
+  let date = new Date(item.dateOfRegistration);
+  let y = date.getFullYear();
+  let m =
+    date.getMonth() + 1 < 10
+      ? "0" + (date.getMonth() + 1)
+      : date.getMonth() + 1;
+  return y + "年" + m + "月";
+};
+
+// 分类   saleType 0:腾发自营  1:车主自营  2:限时特惠
+const saleName=(saleType)=>{
+  switch (saleType) {
+    case 0:
+      return '腾发自营'
+    case 1:
+      return '车主自营'
+    case 2:
+      return '限时特惠'
+  
+    default:
+      return '暂无分类'
+  }
+}
 </script>
 
 <style scoped>
-
 .list-item {
   display: block;
   width: 277px;
@@ -91,6 +127,15 @@ defineProps(['contentList'])
   border-radius: 0px 4px 4px 0px;
 }
 .list-item:nth-child(4n) {
-    margin-right: 0;
+  margin-right: 0;
+}
+.type-or {
+  background: linear-gradient(90deg, #ff8856 0%, #ff4725 100%);
+}
+.type-bl {
+    background: linear-gradient(90deg, #5F98F6 0%, #2E68EB 100%);
+}
+.list-item:hover {
+    box-shadow: 0px 2px 20px 0px rgb(170 170 216 / 40%);
 }
 </style>
