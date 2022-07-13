@@ -31,7 +31,9 @@
           />
           <span style="margin-left: 10px">万</span>
         </div>
-        <button type="button" class="price-in-btn">确定</button>
+        <button type="button" class="price-in-btn" @click="confirm">
+          确定
+        </button>
       </div>
     </div>
   </div>
@@ -44,19 +46,53 @@ import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const router = useRouter();
 
-// #region
-let mixPric=ref(null)
-let maxPric=ref(null)
+// #region 输入的价格区间
+let pic = null;
+let pid = 0;
+
+let mixPric = ref("");
+let maxPric = ref("");
+if(route.query.pid==100){
+  console.log(route.query.pic);
+  mixPric.value=route.query.pic[0]
+  maxPric.value=route.query.pic[1]
+}
+const confirm = () => {
+  prisel.value = 100;
+  pid = prisel.value;
+  let obj = {
+    a: [mixPric.value, maxPric.value],
+  };
+  pic = obj.a;
+  let { id, xid, tid, dis, emi, mil, gea, dri, fue, sea } = route.query;
+  router.push({
+    path: "/twocar",
+    query: {
+      id,
+      xid,
+      tid,
+      dis,
+      emi,
+      mil,
+      gea,
+      dri,
+      fue,
+      sea,
+      pic,
+      pid,
+    },
+  });
+};
 // #endregion
 
 // #region 获取价格分类
 let priceList = ref([]);
 axios(`/api/tfcar/car/price`).then((res) => {
-  console.log(res.data.data);
   priceList.value = res.data.data;
   priceList.value.forEach((item) => {
     item.queryRules = JSON.parse(item.queryRules);
   });
+  console.log(priceList.value);
 });
 // #endregion
 
@@ -64,14 +100,17 @@ axios(`/api/tfcar/car/price`).then((res) => {
 let prisel = ref(0);
 prisel.value = route.query.pid ? route.query.pid : 0;
 const setPri = (p) => {
-  let pid = 0;
   if (p) {
     prisel.value = p.sortValue;
     pid = p.sortValue;
+    pic =
+      p.queryRules.currentPriceLt ||
+      p.queryRules.currentPrices ||
+      p.queryRules.currentPriceGe;
   } else {
     prisel.value = 0;
   }
-  let { id, tid, xid } = route.query;
+  let { id, xid, tid, dis, emi, mil, gea, dri, fue, sea } = route.query;
   router.push({
     path: "/twocar",
     query: {
@@ -79,6 +118,14 @@ const setPri = (p) => {
       xid,
       tid,
       pid,
+      dis,
+      emi,
+      mil,
+      gea,
+      dri,
+      fue,
+      sea,
+      pic,
     },
   });
 };

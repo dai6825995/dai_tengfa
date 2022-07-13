@@ -41,13 +41,12 @@ let carXisel = ref(0);
 carXisel.value = route.query.xid ? route.query.xid : 0;
 const setCarxi = (xid) => {
   carXisel.value = xid;
-  let {id,tid} = route.query
+  let {id} = route.query
   router.push({
     path: "/twocar",
     query: {
       id,
       xid,
-      tid,
     },
   });
 };

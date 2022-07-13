@@ -26,7 +26,7 @@ const router = useRouter();
 // #region 获取全部车型
 let modelList = ref([]);
 axios("/api/tfcar/car/model").then((res) => {
-//   console.log(res.data.data.content);
+  //   console.log(res.data.data.content);
   modelList.value = res.data.data.content;
 });
 // #endregion
@@ -36,16 +36,25 @@ let typesel = ref(0);
 typesel.value = route.query.tid ? route.query.tid : 0;
 const setTypeId = (tid) => {
   typesel.value = tid;
-  let {id,xid} = route.query
+  let { id, xid, pid, pic, dis, emi, mil, gea, dri, fue, sea } = route.query;
 
-//   console.log(obj);
+  //   console.log(obj);
   router.push({
-    path:'/twocar',
-    query:{
-        id,
-        xid,
-        tid
-    }
+    path: "/twocar",
+    query: {
+      id,
+      xid,
+      tid,
+      pid,
+      dis,
+      emi,
+      mil,
+      pic,
+      gea,
+      dri,
+      fue,
+      sea,
+    },
   });
 };
 watch(route, (newval, oldval) => {

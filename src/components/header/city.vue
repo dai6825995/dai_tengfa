@@ -34,7 +34,7 @@
           <div class="city-item-list">
             <div>
               <span
-                @click="setCity({ cityId: 0, name: '全部' })"
+                @click="setCity({ cityId: 0, name: '全国' })"
                 :class="{ active: selCity == '0' }"
                 city-code="0"
                 >全国</span

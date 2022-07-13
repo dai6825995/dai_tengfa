@@ -1,0 +1,224 @@
+.buy-sift {
+    width: 1200px;
+    min-height: 290px;
+    box-sizing: border-box;
+    padding: 30px 20px 30px 20px;
+    background: #ffffff;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  .buy-sift-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .sift-div-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    color: #333333;
+  }
+  .sift-div-list > a {
+    margin-left: 20px;
+    padding: 0 10px;
+    line-height: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .sift-div-checked {
+    color: #ffffff;
+    background-color: #5685fe;
+    /* border-radius: 4px; */
+  }
+  .sift-div-list > a:nth-child(3) {
+    margin-left: 10px;
+  }
+  .sift-all-btn {
+    color: #5685fe;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-right: 16px;
+  }
+  .sift-all-btn span {
+    margin-right: 7px;
+  }
+  .btn-xia i {
+    width: 12px;
+    height: 7px;
+    display: inline-block;
+    background-image: url("@/assets/img/xia.png");
+    background-repeat: no-repeat;
+    background-position: 50%;
+  }
+  .sift-all-brand {
+    padding: 30px 0 30px 62px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .all-brand-flex {
+    width: 365px;
+  }
+  .brand-flex-code {
+    display: flex;
+  }
+  .brand-flex-title {
+    color: #5685fe;
+    margin-right: 10px;
+    line-height: 20px;
+  }
+  .brand-flex-item {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .brand-flex-item > a {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  .sift-series-list {
+    display: flex;
+  }
+  .buy-sift-div-mt {
+    margin-top: 30px;
+  }
+  
+  .series-list-div {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1030px;
+  }
+  .series-list-div > a {
+    margin-left: 20px;
+    margin-bottom: 30px;
+    padding: 0 10px;
+    line-height: 20px;
+    height: 20px;
+  }
+  
+  .series-list-div > a:nth-child(2) {
+    margin-left: 10px;
+  }
+  .sift-price-div {
+    width: 322px;
+    height: 44px;
+    background: #ffffff;
+    box-sizing: border-box;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 2px;
+    font-size: 14px;
+  }
+  .sift-price-in {
+    display: flex;
+    align-items: center;
+  }
+  .sift-price-in input {
+    width: 90px;
+    height: 40px;
+    background: #ffffff;
+    border-radius: 4px;
+    border: 1px solid #f0f0f0;
+    box-sizing: border-box;
+    padding-left: 14px;
+    outline: none;
+  }
+  .sift-price-in span {
+    margin: 0 6px;
+  }
+  .price-in-btn {
+    width: 68px;
+    height: 40px;
+    background: #f5f7fe;
+    border-radius: 4px;
+  }
+  button {
+    cursor: pointer;
+    border: none;
+  }
+  .sift-div-list .tfcar-select {
+    margin-left: 20px;
+  }
+  .tfcar-select {
+    width: 116px;
+    height: 40px;
+    background: #ffffff;
+    border-radius: 4px;
+    border: 1px solid #f0f0f0;
+    box-sizing: border-box;
+    padding: 0 13px;
+    position: relative;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .tfcar-select span {
+    line-height: 40px;
+  }
+  .tfcar-select i {
+      float: right;
+      background-image: url('@/assets/img/icon.png');
+      background-position: -6px -5px;
+      background-repeat: no-repeat;
+      width: 14px;
+      height: 7px;
+      display: block;
+      margin-top: 17px;
+  }
+  .tfcar-select:hover {
+      border: 1px solid #5685FE;
+      border-radius: 4px 4px 0px 0px;
+  }
+  .tfcar-select:hover .select-list {
+      box-shadow: 0px 2px 20px 0px rgb(170 170 216 / 40%);
+      border: 1px solid #5685FE;
+      display: block;
+  }
+  .tfcar-select:hover i {
+      background-position: -28px -5px;
+  }
+  .select-list>a:hover {
+      background-color: #5685FE;
+      color: #FFFFFF;
+  }
+  .select-list {
+    display: none;
+    position: absolute;
+    top: 39px;
+    left: -1px;
+    z-index: 1;
+    min-width: 116px;
+    max-height: 218px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background-color: #ffffff;
+  }
+  .select-list > a {
+    width: 100%;
+    height: 34px;
+    padding-left: 14px;
+    line-height: 34px;
+    display: inline-block;
+    /* margin: 6px 0; */
+    box-sizing: border-box;
+  }
+  .series-list-div > a:nth-child(2) {
+    margin-left: 10px;
+  }
+  .series-list-div > a {
+    margin-left: 20px;
+    margin-bottom: 30px;
+    padding: 0 10px;
+    line-height: 20px;
+    height: 20px;
+  }
+  .sift-price-div:hover {
+    box-shadow: 0px 2px 20px 0px rgb(170 170 216 / 40%);
+  }
+  .sift-price-div:hover .price-in-btn {
+    background-color: #5685fe;
+    color: #ffffff;
+  }
