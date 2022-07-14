@@ -8,7 +8,7 @@
         >
         <a v-if="carXiList.length == 0">宝马X4 M</a>
         <a
-          @click="setCarxi(xi.id)"
+          @click="setCarxi(xi)"
           v-for="xi in carXiList"
           :key="xi.id"
           :class="{ 'sift-div-checked': carXisel == xi.id }"
@@ -21,7 +21,7 @@
 
 <script setup>
 import axios from "axios";
-import { ref, watch } from "vue";
+import { ref, watch, inject } from "vue";
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const router = useRouter();
@@ -35,13 +35,22 @@ let getCarXiList = () => {
 };
 getCarXiList();
 //#endregion
-
+const pushSelList = inject("pushSelList");
 // #region 根据路由导航高亮 车品牌
 let carXisel = ref(0);
 carXisel.value = route.query.xid ? route.query.xid : 0;
-const setCarxi = (xid) => {
-  carXisel.value = xid;
-  let {id} = route.query
+const setCarxi = (xi) => {
+  let xid;
+  if (!xi) {
+    carXisel.value = xi;
+    xid = 0;
+    pushSelList(1, "");
+  } else {
+    pushSelList(1, xi.abbreviation);
+    xid = xi.id;
+  }
+  let { id } = route.query;
+
   router.push({
     path: "/twocar",
     query: {

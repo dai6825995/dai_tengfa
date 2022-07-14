@@ -36,7 +36,7 @@ let typesel = ref(0);
 typesel.value = route.query.tid ? route.query.tid : 0;
 const setTypeId = (tid) => {
   typesel.value = tid;
-  let { id, xid, pid, pic, dis, emi, mil, gea, dri, fue, sea } = route.query;
+  let { id, xid, pid, pic, dis, emi, mil, gea, dri, fue, sea,carName } = route.query;
 
   //   console.log(obj);
   router.push({
@@ -54,6 +54,7 @@ const setTypeId = (tid) => {
       dri,
       fue,
       sea,
+      carName
     },
   });
 };

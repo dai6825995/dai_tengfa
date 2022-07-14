@@ -1,8 +1,9 @@
 <template>
   <div class="page">
     <Header @setiShow="setiShow" :selCityName="selCityName"></Header>
-    <router-view></router-view>
+    <router-view ></router-view>
     <Foot></Foot>
+    <Right></Right>
     <City
       :class="{ iShow: isshow }"
       @setiShow="setiShow"
@@ -15,8 +16,10 @@
 <script setup>
 import Header from "./components/header/header.vue";
 import City from "./components/header/city.vue";
+import Right from "./components/header/Right.vue";
 import Foot from "./components/foot/foot.vue";
 import { ref } from "vue";
+
 
 // 控制是否展示城市窗口
 let isshow = ref(true);

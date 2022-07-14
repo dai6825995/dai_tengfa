@@ -21,7 +21,7 @@ import axios from "axios";
 import { ref } from "vue";
 let newsList = ref([]);
 axios("/api/tfcar/website/indexNews").then((res) => {
-  console.log(res);
+  // console.log(res);
   newsList.value.push(res.data.data[0]) ;
   newsList.value.push(res.data.data[1]) ;
 });

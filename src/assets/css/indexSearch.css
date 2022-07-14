@@ -92,6 +92,7 @@
     display: flex;
     align-items: center;
     margin-right: 30px;
+    cursor: pointer;
   }
   .div-brand img {
     width: 29px;
@@ -106,6 +107,7 @@
     line-height: 34px;
     text-align: center;
     margin-right: 15px;
+    cursor: pointer;
   }
   .sell {
     width: 586px;

@@ -26,7 +26,8 @@ defineProps(["more"]);
 // #region 显示选择的条件
 let title = ref("");
 const setTitle = (item) => {
-  let { id, xid, tid, pid, pic, dis, emi, mil, gea, dri, fue, sea } =
+  
+  let { id, xid, tid, pid, pic, dis, emi, mil, gea, dri, fue, sea,carName } =
     route.query;
   if (!item) {
     title.value = item;
@@ -46,38 +47,62 @@ const setTitle = (item) => {
       case "displacements": //排量区间
         console.log("displacements");
         dis = item.queryRules[key];
+        sessionStorage.setItem('dis',item.label)
         break;
       case "displacementLt": //排量最低
         console.log("displacements");
         dis = item.queryRules[key];
+        sessionStorage.setItem('dis',item.label)
         break;
       case "displacementGe": //排量最大
         console.log("displacements");
         dis = item.queryRules[key];
+        sessionStorage.setItem('dis',item.label)
         break;
       case "emissionStandardType": //排放
         console.log("emissionStandardType");
         emi = item.queryRules[key];
+        sessionStorage.setItem('emi',item.label)
         break;
       case "mileages": //里程
         console.log("mileages");
         mil = item.queryRules[key];
+        sessionStorage.setItem('mil',item.label)
+        break;
+      case "mileageLt": //里程
+        console.log("mileageLt");
+        mil = item.queryRules[key];
+        sessionStorage.setItem('mil',item.label)
+        break;
+      case "mileageGe": //里程
+        console.log("mileageGe");
+        mil = item.queryRules[key];
+        sessionStorage.setItem('mil',item.label)
         break;
       case "gearboxType": //变速箱
         console.log("gearboxType");
         gea = item.queryRules[key];
+        sessionStorage.setItem('gea',item.label)
         break;
       case "driveType": //驱动类型
         console.log("driveType");
         dri = item.queryRules[key];
+        sessionStorage.setItem('dri',item.label)
         break;
       case "fuelType": //燃油类型
         console.log("fuelType");
         fue = item.queryRules[key];
+        sessionStorage.setItem('fue',item.label)
         break;
       case "seat": //座位数
         console.log("seat");
         sea = item.queryRules[key];
+        sessionStorage.setItem('sea',item.label)
+        break;
+      case "seatGe": //座位数
+        console.log("seat");
+        sea = item.queryRules[key];
+        sessionStorage.setItem('sea',item.label)
         break;
     }
     router.push({
@@ -95,6 +120,7 @@ const setTitle = (item) => {
         fue,
         sea,
         pic,
+        carName
       },
     });
     // console.log(item.queryRules[key]);

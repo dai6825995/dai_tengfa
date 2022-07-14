@@ -13,8 +13,17 @@
           placeholder="搜索品牌、车型"
           class="search-input"
           id="search-in"
+          v-model="search"
+          @keyup.enter="goSearch"
         />
-        <button type="button" class="search-btn" id="search-btn">搜索</button>
+        <button
+          type="button"
+          @click="goSearch"
+          class="search-btn"
+          id="search-btn"
+        >
+          搜索
+        </button>
       </div>
       <div class="buy-sell">
         <div class="buy">
@@ -28,16 +37,29 @@
                 class="div-brand"
                 v-for="(brand, index) in convenient.convenientBrands"
                 :key="index"
+                @click="goTwo(brand)"
               >
                 <img :src="brand.logo" />
                 <span>{{ brand.label }}</span>
               </a>
             </div>
             <div class="search-div">
-              <a class="div-price" v-for="(prices, index) in convenient.convenientPrices" :key="index">{{prices.label}}</a>
+              <a
+                class="div-price"
+                v-for="(prices, index) in convenient.convenientPrices"
+                :key="index"
+                @click="goTwoPric(prices)"
+                >{{ prices.label }}</a
+              >
             </div>
             <div class="search-div">
-              <a class="div-price" v-for="(models, index) in convenient.convenientModels" :key="index">{{models.label}}</a>
+              <a
+                class="div-price"
+                v-for="(models, index) in convenient.convenientModels"
+                :key="index"
+                @click="goTwoTyp(models)"
+                >{{ models.label }}</a
+              >
             </div>
           </div>
         </div>
@@ -82,10 +104,58 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+let router = useRouter();
 let convenient = ref([]);
 axios("/api/tfcar/car/convenient").then((res) => {
   convenient.value = res.data.data;
 });
+
+let search = ref("");
+const goSearch = () => {
+  router.push({
+    path: "/twocar",
+    query: {
+      carName: search.value,
+    },
+  });
+};
+const goTwo = (brand) => {
+  brand.queryRules = JSON.parse(brand.queryRules);
+  router.push({
+    path: "/twocar",
+    query: {
+      id: brand.queryRules.carBrand,
+    },
+  });
+};
+const goTwoPric = (brand) => {
+  // console.log(brand);
+  let qu = JSON.parse(brand.queryRules);
+  let pic = qu.currentPrices
+    ? qu.currentPrices
+    : qu.currentPriceLt
+    ? qu.currentPriceLt
+    : qu.currentPriceGe
+    ? qu.currentPriceGe
+    : "";
+  router.push({
+    path: "/twocar",
+    query: {
+      pid: 100,
+      pic,
+    },
+  });
+};
+const goTwoTyp = (brand) => {
+  brand.queryRules = JSON.parse(brand.queryRules);
+  router.push({
+    path: "/twocar",
+    query: {
+      tid: brand.queryRules.carModel,
+    },
+  });
+};
 </script>
 
 <style src='@/assets/css/indexSearch.css' scoped>

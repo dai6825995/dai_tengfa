@@ -51,21 +51,17 @@
         </div>
       </div>
     </div>
-    <SearchMenuXi></SearchMenuXi>
-    <SearchMenuType></SearchMenuType>
+    <SearchMenuType style="margin-top: 30px;"></SearchMenuType>
     <SearchMenuPrice></SearchMenuPrice>
-    <SearchMenuMore></SearchMenuMore>
   </div>
 </template>
 
 <script setup>
 import axios from "axios";
-import { ref, watch, inject } from "vue";
+import { ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import SearchMenuXi from "./searchMenuXi.vue";
-import SearchMenuType from "./searchMenuType.vue";
-import SearchMenuPrice from "./searchMenuPrice.vue";
-import SearchMenuMore from "./searchMenuMore.vue";
+import SearchMenuType from "../twocar/searchMenuType.vue";
+import SearchMenuPrice from "../twocar/searchMenuPrice.vue";
 // 推荐品牌
 let convenient = ref([]);
 axios("/api/tfcar/car/convenient").then((res) => {
@@ -146,28 +142,25 @@ const showAllbrand = () => {
 //#region 点击路由跳转
 
 const router = useRouter();
-const pushSelList = inject("pushSelList");
 const getCarXi = (item) => {
   isshowAllBrand.value = false;
   controlBrand.value = "全部";
   shangxia.value.style.transform = "rotate(0)";
+  console.log(item);
   let id;
   if (!item) {
-    pushSelList(0, "");
     id = item;
   } else if (item.queryRules) {
     id = item.queryRules.carBrand;
-    pushSelList(0, item.label);
   } else {
-    pushSelList(0, item.label);
     id = item.id;
   }
-  router.push({
-    path: "/twocar",
-    query: {
-      id,
-    },
-  });
+//   router.push({
+//     path: "/twocar",
+//     query: {
+//       id,
+//     },
+//   });
 };
 //#endregion
 

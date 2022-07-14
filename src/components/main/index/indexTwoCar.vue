@@ -1,12 +1,12 @@
 <template>
   <div class="page_box">
-    <IndexTitle>二手车</IndexTitle>
+    <IndexTitle :url='"/twocar"'>二手车</IndexTitle>
     <div class="list">
       <IndexTwoItem :contentList='contentList'></IndexTwoItem>
     </div>
-    <IndexTitle>新车</IndexTitle>
+    <IndexTitle :url='"/newcar"'>新车</IndexTitle>
     <div class="list"></div>
-    <IndexTitle>新闻资讯</IndexTitle>
+    <IndexTitle :url='"/"'>新闻资讯</IndexTitle>
      <div class="list">
       <IndexAd></IndexAd>
      </div>

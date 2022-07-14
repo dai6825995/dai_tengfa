@@ -52,10 +52,20 @@ let pid = 0;
 
 let mixPric = ref("");
 let maxPric = ref("");
-if(route.query.pid==100){
-  console.log(route.query.pic);
-  mixPric.value=route.query.pic[0]
-  maxPric.value=route.query.pic[1]
+if (route.query.pid == 100) {
+  // console.log(route.query.pic);
+  if (typeof route.query.pic == "string") {
+    if (route.query.pic == 20) {
+      mixPric.value = 0;
+      maxPric.value = 20;
+    } else {
+      mixPric.value = 50;
+      maxPric.value = 999;
+    }
+  } else {
+    mixPric.value = route.query.pic[0];
+    maxPric.value = route.query.pic[1];
+  }
 }
 const confirm = () => {
   prisel.value = 100;
@@ -92,7 +102,7 @@ axios(`/api/tfcar/car/price`).then((res) => {
   priceList.value.forEach((item) => {
     item.queryRules = JSON.parse(item.queryRules);
   });
-  console.log(priceList.value);
+  // console.log(priceList.value);
 });
 // #endregion
 
@@ -100,6 +110,8 @@ axios(`/api/tfcar/car/price`).then((res) => {
 let prisel = ref(0);
 prisel.value = route.query.pid ? route.query.pid : 0;
 const setPri = (p) => {
+  mixPric.value = "";
+  maxPric.value = "";
   if (p) {
     prisel.value = p.sortValue;
     pid = p.sortValue;
@@ -107,27 +119,47 @@ const setPri = (p) => {
       p.queryRules.currentPriceLt ||
       p.queryRules.currentPrices ||
       p.queryRules.currentPriceGe;
+    let { id, xid, tid, dis, emi, mil, gea, dri, fue, sea, carName } =
+      route.query;
+    router.push({
+      path: "/twocar",
+      query: {
+        id,
+        xid,
+        tid,
+        pid,
+        dis,
+        emi,
+        mil,
+        gea,
+        dri,
+        fue,
+        sea,
+        pic,
+        carName,
+      },
+    });
   } else {
     prisel.value = 0;
+    let { id, xid, tid, dis, emi, mil, gea, dri, fue, sea, carName } =
+      route.query;
+    router.push({
+      path: "/twocar",
+      query: {
+        id,
+        xid,
+        tid,
+        dis,
+        emi,
+        mil,
+        gea,
+        dri,
+        fue,
+        sea,
+        carName,
+      },
+    });
   }
-  let { id, xid, tid, dis, emi, mil, gea, dri, fue, sea } = route.query;
-  router.push({
-    path: "/twocar",
-    query: {
-      id,
-      xid,
-      tid,
-      pid,
-      dis,
-      emi,
-      mil,
-      gea,
-      dri,
-      fue,
-      sea,
-      pic,
-    },
-  });
 };
 // #endregion
 

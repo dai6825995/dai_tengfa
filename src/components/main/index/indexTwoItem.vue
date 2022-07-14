@@ -1,17 +1,23 @@
 <template>
-  <a class="list-item" v-for="item in contentList" :key="item.ind">
+  <a
+    @click="goDetil(item.ind)"
+    class="list-item"
+    v-for="item in contentList"
+    :key="item.ind"
+  >
     <div class="list-item-img">
       <img width="275" height="208" :src="item.cover" />
-     
+
       <div
         :class="{
           'item-type': true,
           'type-or': item.saleType == 0,
           'type-bl': item.saleType == 1,
           'type-re': item.saleType == 2,
+          'type-gr': item.saleType == 3,
         }"
       >
-      {{saleName(item.saleType)}}
+        {{ saleName(item.saleType) }}
       </div>
     </div>
     <div class="item-info">
@@ -27,7 +33,9 @@
 </template>
 
 <script setup>
-import { computed, defineProps } from "vue";
+import { defineProps } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 defineProps(["contentList"]);
 
 // 时间戳转文字
@@ -42,19 +50,31 @@ const timeStr = (item) => {
 };
 
 // 分类   saleType 0:腾发自营  1:车主自营  2:限时特惠
-const saleName=(saleType)=>{
+const saleName = (saleType) => {
   switch (saleType) {
     case 0:
-      return '腾发自营'
+      return "腾发自营";
     case 1:
-      return '车主自营'
+      return "车主自营";
     case 2:
-      return '限时特惠'
-  
+      return "限时特惠";
+    case 3:
+      return "严选车源";
+
     default:
-      return '暂无分类'
+      return "暂无分类";
   }
-}
+};
+
+// 跳转到详情页
+const goDetil = (ind) => {
+  router.push({
+    path: "/details",
+    query: {
+      ind,
+    },
+  });
+};
 </script>
 
 <style scoped>
@@ -133,9 +153,12 @@ const saleName=(saleType)=>{
   background: linear-gradient(90deg, #ff8856 0%, #ff4725 100%);
 }
 .type-bl {
-    background: linear-gradient(90deg, #5F98F6 0%, #2E68EB 100%);
+  background: linear-gradient(90deg, #5f98f6 0%, #2e68eb 100%);
 }
 .list-item:hover {
-    box-shadow: 0px 2px 20px 0px rgb(170 170 216 / 40%);
+  box-shadow: 0px 2px 20px 0px rgb(170 170 216 / 40%);
+}
+.type-gr {
+  background: linear-gradient(90deg, #4dd4d4 0%, #0cbfcd 100%);
 }
 </style>

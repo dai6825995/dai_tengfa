@@ -6,14 +6,16 @@
         <slot></slot>
       </div>
     </div>
-    <a class="list-left" href="/c0/ershouche">
+    <router-link class="list-left" :to="url">
       <span>查看更多</span>
       <img src="@/assets/img/icon_更多.png" />
-    </a>
+    </router-link>
   </div>
 </template>
 
 <script setup>
+import { defineProps } from "vue";
+defineProps(['url'])
 </script>
 
 <style scoped>

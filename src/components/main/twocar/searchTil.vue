@@ -1,11 +1,24 @@
 <template>
   <div class="buy-search">
-    <input type="text" id="buy-search-input" placeholder="搜索品牌、车型" />
-    <button type="button" id="buy-search-btn">搜索</button>
+    <input type="text" @keyup.enter="goSearch" id="buy-search-input" v-model="search" placeholder="搜索品牌、车型" />
+    <button @click="goSearch" type="button" id="buy-search-btn">搜索</button>
   </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+let router=useRouter()
+let search=ref('')
+const goSearch=()=>{
+  router.push({
+    path:'/twocar',
+    query:{
+      carName:search.value
+    }
+  })
+}
+
 </script>
 
 <style scoped>
