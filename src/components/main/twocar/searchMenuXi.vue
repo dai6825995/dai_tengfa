@@ -44,13 +44,13 @@ const setCarxi = (xi) => {
   if (!xi) {
     carXisel.value = xi;
     xid = 0;
-    pushSelList(1, "");
+    sessionStorage.removeItem('xid')
   } else {
-    pushSelList(1, xi.abbreviation);
+    sessionStorage.setItem('xid',JSON.stringify(['车系',xi.abbreviation]))
     xid = xi.id;
   }
   let { id } = route.query;
-
+// pushSelList()
   router.push({
     path: "/twocar",
     query: {

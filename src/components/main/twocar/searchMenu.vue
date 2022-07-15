@@ -151,17 +151,21 @@ const getCarXi = (item) => {
   isshowAllBrand.value = false;
   controlBrand.value = "全部";
   shangxia.value.style.transform = "rotate(0)";
+
+  // 保存数据session
+
+  sessionStorage.clear();
   let id;
   if (!item) {
-    pushSelList(0, "");
     id = item;
   } else if (item.queryRules) {
     id = item.queryRules.carBrand;
-    pushSelList(0, item.label);
+    sessionStorage.setItem("id", JSON.stringify(["品牌", item.label]));
   } else {
-    pushSelList(0, item.label);
     id = item.id;
+    sessionStorage.setItem("id", JSON.stringify(["品牌", item.label]));
   }
+  // pushSelList()
   router.push({
     path: "/twocar",
     query: {

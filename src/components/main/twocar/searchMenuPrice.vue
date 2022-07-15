@@ -41,7 +41,7 @@
 
 <script setup>
 import axios from "axios";
-import { ref, watch } from "vue";
+import { ref, watch,inject } from "vue";
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const router = useRouter();
@@ -49,7 +49,7 @@ const router = useRouter();
 // #region 输入的价格区间
 let pic = null;
 let pid = 0;
-
+const pushSelList = inject("pushSelList");
 let mixPric = ref("");
 let maxPric = ref("");
 if (route.query.pid == 100) {
@@ -113,6 +113,7 @@ const setPri = (p) => {
   mixPric.value = "";
   maxPric.value = "";
   if (p) {
+    sessionStorage.setItem('pic',JSON.stringify(['价格',p.label]))
     prisel.value = p.sortValue;
     pid = p.sortValue;
     pic =
@@ -121,6 +122,7 @@ const setPri = (p) => {
       p.queryRules.currentPriceGe;
     let { id, xid, tid, dis, emi, mil, gea, dri, fue, sea, carName } =
       route.query;
+      // pushSelList()
     router.push({
       path: "/twocar",
       query: {
@@ -141,8 +143,10 @@ const setPri = (p) => {
     });
   } else {
     prisel.value = 0;
+    sessionStorage.removeItem('pic')
     let { id, xid, tid, dis, emi, mil, gea, dri, fue, sea, carName } =
       route.query;
+      // pushSelList()
     router.push({
       path: "/twocar",
       query: {

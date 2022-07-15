@@ -2,14 +2,6 @@
   <div class="buy-sift-div">
     <div class="sift-div-list">
       <div>更多：</div>
-      <!-- <div class="tfcar-select" v-for="(more, key) in more_screen" :key="key">
-        <span> {{ defshowStr }} </span>
-        <i></i>
-        <div class="select-list">
-          <a class="sift-div-checked" @click="defShow(more[0])">不限</a>
-          <a v-for="item in more" @click="setDefshow(item.label)" :key="item.sortValue">{{ item.label }}</a>
-        </div>
-      </div> -->
       <SearchMore :more='more' v-for="(more, key) in more_screen" :key="key"></SearchMore>
     </div>
   </div>
@@ -33,7 +25,7 @@ axios("/api/tfcar/car/moreScreen").then((res) => {
       e.queryRules = JSON.parse(e.queryRules);
     });
   }
-  // console.log(more_screen.value);
+  console.log(more_screen.value);
 });
 // #endregion
 

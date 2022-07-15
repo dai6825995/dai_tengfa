@@ -3,8 +3,7 @@
     <div class="page_box">
       <SearchTil></SearchTil>
       <SearchMenu @pushSelList="pushSelList"></SearchMenu>
-      <!-- {{ selList }} -->
-      <!-- <SearchMenuCon></SearchMenuCon> -->
+      <SearchMenuCon v-show="selList.length!=0" :selList='selList'></SearchMenuCon>
       <TwoTitle></TwoTitle>
       <Notfound v-if="contentList.length == 0"></Notfound>
       <div class="sift-car-body">
@@ -155,20 +154,38 @@ const getList = () => {
   });
 };
 getList();
-watch(route, () => {
-  getList();
-});
 
 const s = () => {
   console.log(1);
 };
 
-// 接收选择的参数
-let selList = ref(["", "", "", "", "", "", "", "", "", "", ""]);
-const pushSelList = (i, item) => {
-  console.log(curPage.value);
-};
 
+
+
+
+// 接收选择的参数
+let selList = ref([]);
+const pushSelList = () => {
+  selList.value=[]
+ 
+  for (let i = 0; i < sessionStorage.length; i++) {
+    selList.value.push({
+      key: sessionStorage.key(i),
+      value: JSON.parse(sessionStorage.getItem(sessionStorage.key(i))) ,
+    });
+  }
+  // console.log(selList.value);
+};
+pushSelList();
+
+watch(route, () => {
+  if(Object.keys(route.query).length==0){
+    sessionStorage.clear()
+  }
+  getList();
+  pushSelList();
+  
+});
 provide("pushSelList", pushSelList);
 </script>
 

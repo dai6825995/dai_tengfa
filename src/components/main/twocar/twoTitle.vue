@@ -94,8 +94,22 @@ sortSel.value = route.query.sort ? route.query.sort : "";
 const setSort = (sel) => {
   sortSel.value = sel;
   let sort = sel;
-  let { id, xid, tid, dis, emi, mil, gea, dri, fue, sea, pic, saleType } =
-    route.query;
+  let {
+    id,
+    xid,
+    tid,
+    dis,
+    emi,
+    mil,
+    gea,
+    dri,
+    fue,
+    sea,
+    pid,
+    pic,
+    saleType,
+    carName,
+  } = route.query;
   router.push({
     path: "/twocar",
     query: {
@@ -109,9 +123,11 @@ const setSort = (sel) => {
       dri,
       fue,
       sea,
+      pid,
       pic,
-      sort,
       saleType,
+      carName,
+      sort
     },
   });
 };

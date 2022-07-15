@@ -6,7 +6,7 @@
         >不限</a
       >
       <a
-        @click="setTypeId(m.id)"
+        @click="setTypeId(m)"
         v-for="m in modelList"
         :key="m.id"
         :class="{ 'sift-div-checked': typesel == m.id }"
@@ -18,7 +18,7 @@
 
 <script setup>
 import axios from "axios";
-import { ref, watch } from "vue";
+import { ref, watch,inject } from "vue";
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const router = useRouter();
@@ -30,12 +30,21 @@ axios("/api/tfcar/car/model").then((res) => {
   modelList.value = res.data.data.content;
 });
 // #endregion
-
+const pushSelList = inject("pushSelList");
 // #region 点击车型高亮
 let typesel = ref(0);
 typesel.value = route.query.tid ? route.query.tid : 0;
-const setTypeId = (tid) => {
+const setTypeId = (t) => {
+  let tid
+  if(!t){
+    tid=0
+    sessionStorage.removeItem('tid')
+  }else{
+    tid=t.id
+    sessionStorage.setItem('tid',JSON.stringify(['车型',t.model]))
+  }
   typesel.value = tid;
+  // pushSelList()
   let { id, xid, pid, pic, dis, emi, mil, gea, dri, fue, sea,carName } = route.query;
 
   //   console.log(obj);
